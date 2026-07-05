@@ -1,82 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나만의 위치 안내 서비스</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', '맑은 고딕', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #ffffff;
-    }
-
-    .container {
-      text-align: center;
-      padding: 60px 40px;
-      max-width: 700px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    }
-
-    .icon {
-      font-size: 64px;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: 42px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .description {
-      font-size: 22px;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    .notice {
-      display: inline-block;
-      font-size: 18px;
-      padding: 16px 32px;
-      background: rgba(250, 204, 21, 0.12);
-      border: 1px solid rgba(250, 204, 21, 0.3);
-      border-radius: 12px;
-      color: #fde68a;
-    }
-
-    .notice::before {
-      content: '📌 ';
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="icon">📍</div>
-    <h1>나만의 위치 안내 서비스</h1>
-    <p class="description">
-      원하는 장소의 위치를 쉽고 빠르게 안내해 드립니다.
-    </p>
-    <div class="notice">지도는 배포 후 연결합니다</div>
-  </div>
+  <main class="page">
+    <section class="intro">
+      <p class="badge">AI 위치 안내 8주차</p>
+      <h1>나만의 위치 안내 서비스</h1>
+      <p class="description">
+        내가 소개하고 싶은 장소를 쉽고 크게 보여주는 간단한 웹앱입니다.
+      </p>
+      <div class="notice">지도는 배포 후 연결합니다</div>
+    </section>
+  </main>
 </body>
 </html>

@@ -1,7 +1,7 @@
-{
-  "name": "ai-location-guide",
+﻿{
+  "name": "ai-location-guide-week8",
   "version": "1.0.0",
-  "description": "나만의 위치 안내 서비스",
+  "description": "나만의 위치 안내 서비스 첫 단계 웹앱",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

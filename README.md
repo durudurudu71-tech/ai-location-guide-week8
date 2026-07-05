@@ -1,54 +1,33 @@
-# 📍 나만의 위치 안내 서비스
+﻿# 나만의 위치 안내 서비스
 
-원하는 장소의 위치를 쉽고 빠르게 안내해 주는 웹 애플리케이션입니다.
+Node.js와 Express로 만든 아주 간단한 웹앱입니다.
+첫 단계에서는 카카오맵을 넣지 않고, 안내 문구만 보여 줍니다.
 
-## 🛠 기술 스택
+## 실행 방법
 
-| 구분 | 기술 |
-|------|------|
-| 서버 | Node.js + Express |
-| 프론트엔드 | HTML, CSS |
-| 지도 | 카카오맵 (배포 후 연결 예정) |
-
-## 📁 프로젝트 구조
-
-```
-AI_위치안내_8주차/
-├── server.js          # Express 서버 (포트 3000)
-├── public/
-│   └── index.html     # 메인 웹페이지
-├── package.json       # 프로젝트 설정
-└── .gitignore         # Git 제외 파일 목록
-```
-
-## 🚀 실행 방법
-
-### 1. 프로젝트 클론
-
-```bash
-git clone git@github.com:durudurudu71-tech/ai-location-guide-week8.git
-cd ai-location-guide-week8
-```
-
-### 2. 패키지 설치
+1. 바탕화면의 `AI_위치안내_8주차` 폴더를 엽니다.
+2. 폴더 안에서 터미널을 엽니다.
+3. 아래 명령어를 한 번 실행합니다.
 
 ```bash
 npm install
 ```
 
-### 3. 서버 실행
+4. 서버를 실행합니다.
 
 ```bash
-node server.js
+npm start
 ```
 
-### 4. 브라우저 접속
+5. 브라우저에서 아래 주소로 접속합니다.
 
-```
+```text
 http://localhost:3000
 ```
 
-## 📌 참고
+## 파일 설명
 
-- 현재는 기본 UI만 구현된 상태입니다.
-- 카카오맵 API는 배포 후 연결할 예정입니다.
+- `server.js`: Express 서버 파일입니다. 3000번 포트로 실행됩니다.
+- `public/index.html`: 화면에 보이는 글자를 작성한 파일입니다.
+- `public/style.css`: 글자를 크게 보이게 하는 디자인 파일입니다.
+- `package.json`: 실행 명령어와 필요한 Express 정보를 담은 파일입니다.
