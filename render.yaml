@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: ai-location-guide-week8
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeployTrigger: commit
