@@ -14,8 +14,46 @@
       <p class="description">
         내가 소개하고 싶은 장소를 쉽고 크게 보여주는 간단한 웹앱입니다.
       </p>
-      <div class="notice">지도는 배포 후 연결합니다</div>
+      <!-- 카카오맵이 들어갈 자리입니다. JavaScript에서 이 id를 찾아 지도를 그립니다. -->
+      <div id="map" class="map" aria-label="카카오맵"></div>
     </section>
   </main>
+
+  <!-- 카카오맵 JavaScript SDK입니다. appkey= 뒤에 JavaScript 키를 넣습니다. -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=00ba6adaa9c3e5a5e0bc50e650650538"></script>
+  <script>
+    // 서울시청 좌표입니다. 지도의 중심과 마커 위치로 사용합니다.
+    const seoulCityHall = new kakao.maps.LatLng(37.566826, 126.9786567);
+
+    // HTML에서 id가 map인 요소를 찾아 지도 컨테이너로 사용합니다.
+    const mapContainer = document.getElementById('map');
+
+    // 지도를 처음 보여줄 때 사용할 설정입니다.
+    const mapOption = {
+      center: seoulCityHall,
+      level: 3
+    };
+
+    // 카카오맵 객체를 만들면 화면에 지도가 표시됩니다.
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 서울시청 위치에 표시할 마커를 만듭니다.
+    const marker = new kakao.maps.Marker({
+      position: seoulCityHall
+    });
+
+    // 만든 마커를 지도 위에 올립니다.
+    marker.setMap(map);
+
+    // 마커를 클릭했을 때 보여줄 정보창입니다.
+    const infoWindow = new kakao.maps.InfoWindow({
+      content: '<div class="info-window">오늘의 위치 안내 장소</div>'
+    });
+
+    // 마커를 클릭하면 정보창이 열리도록 연결합니다.
+    kakao.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(map, marker);
+    });
+  </script>
 </body>
 </html>

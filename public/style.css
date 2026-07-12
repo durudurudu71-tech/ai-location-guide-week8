@@ -19,7 +19,7 @@ body {
 
 .intro {
   width: 100%;
-  max-width: 760px;
+  max-width: 960px;
   text-align: center;
   background: #ffffff;
   border: 2px solid #d9e3f0;
@@ -47,15 +47,22 @@ h1 {
   line-height: 1.5;
 }
 
-.notice {
+.map {
   margin-top: 36px;
-  padding: 24px;
+  width: 100%;
+  height: 560px;
   border-radius: 8px;
-  background: #eaf2ff;
   border: 2px solid #9fc2ff;
-  font-size: 30px;
+  overflow: hidden;
+  background: #eaf2ff;
+}
+
+.info-window {
+  padding: 10px 14px;
+  font-size: 16px;
   font-weight: 700;
-  color: #174ea6;
+  color: #172033;
+  white-space: nowrap;
 }
 
 @media (max-width: 600px) {
@@ -67,8 +74,11 @@ h1 {
     font-size: 40px;
   }
 
-  .description,
-  .notice {
+  .description {
     font-size: 24px;
+  }
+
+  .map {
+    height: 420px;
   }
 }

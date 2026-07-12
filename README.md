@@ -1,7 +1,7 @@
 ﻿# 나만의 위치 안내 서비스
 
 Node.js와 Express로 만든 아주 간단한 웹앱입니다.
-첫 단계에서는 카카오맵을 넣지 않고, 안내 문구만 보여 줍니다.
+카카오맵 JavaScript SDK를 사용해 지도 화면을 보여 줍니다.
 
 ## 실행 방법
 
@@ -27,7 +27,7 @@ http://localhost:3000
 
 ## 파일 설명
 
-- `server.js`: Express 서버 파일입니다. 3000번 포트로 실행됩니다.
-- `public/index.html`: 화면에 보이는 글자를 작성한 파일입니다.
-- `public/style.css`: 글자를 크게 보이게 하는 디자인 파일입니다.
+- `server.js`: Express 서버 파일입니다. Render에서는 `PORT` 환경 변수를 사용하고, 로컬에서는 3000번 포트로 실행됩니다.
+- `public/index.html`: 화면에 보이는 글자와 카카오맵 스크립트를 작성한 파일입니다.
+- `public/style.css`: 화면과 지도 영역 디자인 파일입니다.
 - `package.json`: 실행 명령어와 필요한 Express 정보를 담은 파일입니다.
