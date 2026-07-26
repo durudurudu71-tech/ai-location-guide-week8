@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -14,46 +14,130 @@
       <p class="description">
         내가 소개하고 싶은 장소를 쉽고 크게 보여주는 간단한 웹앱입니다.
       </p>
-      <!-- 카카오맵이 들어갈 자리입니다. JavaScript에서 이 id를 찾아 지도를 그립니다. -->
-      <div id="map" class="map" aria-label="카카오맵"></div>
+
+      <div class="app-container">
+        <div class="sidebar">
+          <div id="location-info" class="location-info">
+            <h2 id="current-location-name">장소를 선택해주세요</h2>
+            <p id="current-location-desc">버튼을 클릭하면 지도와 장소 정보가 업데이트됩니다.</p>
+          </div>
+          <div id="location-list" class="location-list">
+            <!-- 자바스크립트로 버튼이 생성됩니다. -->
+          </div>
+        </div>
+        
+        <div class="map-container">
+          <!-- 카카오맵이 들어갈 자리입니다. -->
+          <div id="map" class="map" aria-label="카카오맵"></div>
+        </div>
+      </div>
     </section>
   </main>
 
   <!-- 카카오맵 JavaScript SDK입니다. appkey= 뒤에 JavaScript 키를 넣습니다. -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=00ba6adaa9c3e5a5e0bc50e650650538"></script>
   <script>
-    // 서울시청 좌표입니다. 지도의 중심과 마커 위치로 사용합니다.
-    const seoulCityHall = new kakao.maps.LatLng(37.566826, 126.9786567);
+    // 장소 데이터 배열
+    const locations = [
+      {
+        id: 'seoul',
+        name: '서울시청',
+        desc: '서울의 중심, 다양한 행사가 열리는 곳입니다.',
+        lat: 37.566826,
+        lng: 126.9786567
+      },
+      {
+        id: 'gangnam',
+        name: '강남역',
+        desc: '서울의 대표적인 번화가이자 업무지구입니다.',
+        lat: 37.497942,
+        lng: 127.027621
+      },
+      {
+        id: 'hongdae',
+        name: '홍대입구역',
+        desc: '젊음과 예술, 다양한 문화가 공존하는 거리입니다.',
+        lat: 37.556788,
+        lng: 126.923640
+      }
+    ];
 
-    // HTML에서 id가 map인 요소를 찾아 지도 컨테이너로 사용합니다.
+    // 초기 상태 설정
+    let currentLocation = locations[0];
+
+    // HTML 요소 가져오기
     const mapContainer = document.getElementById('map');
+    const locationListContainer = document.getElementById('location-list');
+    const locationNameEl = document.getElementById('current-location-name');
+    const locationDescEl = document.getElementById('current-location-desc');
 
-    // 지도를 처음 보여줄 때 사용할 설정입니다.
+    // 지도 생성
     const mapOption = {
-      center: seoulCityHall,
+      center: new kakao.maps.LatLng(currentLocation.lat, currentLocation.lng),
       level: 3
     };
-
-    // 카카오맵 객체를 만들면 화면에 지도가 표시됩니다.
     const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    // 서울시청 위치에 표시할 마커를 만듭니다.
+    // 마커 생성
     const marker = new kakao.maps.Marker({
-      position: seoulCityHall
+      position: mapOption.center
     });
-
-    // 만든 마커를 지도 위에 올립니다.
     marker.setMap(map);
 
-    // 마커를 클릭했을 때 보여줄 정보창입니다.
+    // 정보창 생성
     const infoWindow = new kakao.maps.InfoWindow({
-      content: '<div class="info-window">오늘의 위치 안내 장소</div>'
+      content: `<div class="info-window">${currentLocation.name}</div>`
     });
 
-    // 마커를 클릭하면 정보창이 열리도록 연결합니다.
+    // 마커 클릭 이벤트
     kakao.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(map, marker);
     });
+
+    // UI 및 지도 업데이트 함수
+    function updateLocation(loc) {
+      currentLocation = loc;
+      
+      // 1. 지도 중심 이동
+      const moveLatLon = new kakao.maps.LatLng(loc.lat, loc.lng);
+      map.panTo(moveLatLon);
+
+      // 2. 마커 위치 이동
+      marker.setPosition(moveLatLon);
+      infoWindow.setContent(`<div class="info-window">${loc.name}</div>`);
+      infoWindow.close(); // 이동 시 정보창 닫기
+
+      // 3. 텍스트 업데이트
+      locationNameEl.textContent = loc.name;
+      locationDescEl.textContent = loc.desc;
+
+      // 4. 버튼 스타일 업데이트
+      document.querySelectorAll('.location-btn').forEach(btn => {
+        if (btn.dataset.id === loc.id) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // 장소 목록 버튼 렌더링
+    locations.forEach(loc => {
+      const btn = document.createElement('button');
+      btn.className = 'location-btn';
+      if (loc.id === currentLocation.id) btn.classList.add('active');
+      btn.textContent = loc.name;
+      btn.dataset.id = loc.id;
+      
+      btn.addEventListener('click', () => {
+        updateLocation(loc);
+      });
+      
+      locationListContainer.appendChild(btn);
+    });
+
+    // 초기 텍스트 설정
+    updateLocation(currentLocation);
   </script>
 </body>
 </html>
